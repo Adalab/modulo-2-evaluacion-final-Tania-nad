@@ -17,6 +17,7 @@ Cuando la usuaria haga click en buscar:
 
 */
 
+
 const inputText = document.querySelector(".js-input");
 const buttonSearch = document.querySelector(".js-button");
 const contentSearch = document.querySelector(".js-content");
@@ -31,18 +32,46 @@ function handleButton(ev) {
 
             seriesList = info.data;
             for (const serie of seriesList) {
-                contentSearch.innerHTML += `<div><h2>${serie.title}</h2><img class="image-1" src="${serie.images.jpg.small_image_url}" alt=""></div>`;
-                // let content = "";
-                // content += `<div><h2>${serie.title}</h2>`
-                // content += "</div>";
-                // contentSearch.innerHTML += content;
+                contentSearch.innerHTML += `<div><h2>${serie.title}</h2><img class="image-1 js-images" id=${serie.id} src="${serie.images.jpg.small_image_url}" alt="Portada de la serie"></div>`;
+
             }
             console.log(seriesList);
+            const allImages = document.querySelectorAll(".js-images");
+            for (const image of allImages) {
+                if (image.src.includes("https://cdn.myanimelist.net/img/sp/icon/apple-touch-icon-256.png")) {
+                    image.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQppJKxBxJI-9UWLe2VVmzuBd24zsq4_ihxZw&s"
+                }
+            }
 
 
 
 
-        })
+
+
+            // function handleFavourites(event) {
+            //     const idSerieClicked = event.currentTarget.value;
+
+            // }
+            // const allImages = document.querySelectorAll(".js-images");
+
+            // for (const image of allImages) {
+            //     allImages.addEventListener("click", handleFavourites);
+
+            // }
+
+
+
+
+
+
+        }
+
+
+
+
+
+
+        )
 
 }
 
