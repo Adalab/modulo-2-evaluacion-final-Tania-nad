@@ -22,7 +22,8 @@ const buttonSearch = document.querySelector(".js-button");
 const contentSearch = document.querySelector(".js-content");
 let seriesList = [];
 
-function handleButton() {
+function handleButton(ev) {
+    ev.preventDefault();
     const inputSearch = inputText.value;
     fetch(`https://api.jikan.moe/v4/anime?q=${inputSearch}`)
         .then((response) => response.json())
@@ -30,10 +31,11 @@ function handleButton() {
 
             seriesList = info.data;
             for (const serie of seriesList) {
-                let content = "";
-                content += `<div><h2>${serie.title}</h2>`
-                content += "</div>";
-                contentSearch.innerHTML += content;
+                contentSearch.innerHTML += `<div><h2>${serie.title}</h2><img class="image-1" src="${serie.images.jpg.small_image_url}" alt=""></div>`;
+                // let content = "";
+                // content += `<div><h2>${serie.title}</h2>`
+                // content += "</div>";
+                // contentSearch.innerHTML += content;
             }
             console.log(seriesList);
 
