@@ -26,16 +26,23 @@ function handleButton(){
     const inputSearch = inputText.value;
     fetch(`https://api.jikan.moe/v4/anime?q=${inputSearch}`)
         .then((response)=>response.json())
-        .then(data => {
-            console.log(data);
-            seriesList = data.data;
+        .then(info => {
+
+            seriesList = info.data;
+            console.log(info.data);
+            
         const filteredSeries = seriesList.filter((serie)=>{
-            return serie.name === inputSearch;
-        })    
+           return serie.title.includes(inputSearch);
+            
+        })
+        console.log(filteredSeries);
+        
+        
+           
             
             
         })
-}
+ }
 
 buttonSearch.addEventListener("click", handleButton);
 
