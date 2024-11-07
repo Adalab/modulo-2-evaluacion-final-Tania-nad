@@ -22,27 +22,29 @@ const buttonSearch = document.querySelector(".js-button");
 const contentSearch = document.querySelector(".js-content");
 let seriesList = [];
 
-function handleButton(){
+function handleButton() {
     const inputSearch = inputText.value;
     fetch(`https://api.jikan.moe/v4/anime?q=${inputSearch}`)
-        .then((response)=>response.json())
+        .then((response) => response.json())
         .then(info => {
 
             seriesList = info.data;
-            console.log(info.data);
-            
-        const filteredSeries = seriesList.filter((serie)=>{
-           return serie.title.includes(inputSearch);
-            
+            for (const serie of seriesList) {
+                let content = "";
+                content += `<div><h2>${serie.title}</h2>`
+                content += "</div>";
+                contentSearch.innerHTML += content;
+            }
+            console.log(seriesList);
+
+
+
+
         })
-        console.log(filteredSeries);
-        
-        
-           
-            
-            
-        })
- }
+
+}
+
+
 
 buttonSearch.addEventListener("click", handleButton);
 
