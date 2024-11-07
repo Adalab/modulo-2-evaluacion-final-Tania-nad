@@ -21,7 +21,9 @@ Cuando la usuaria haga click en buscar:
 const inputText = document.querySelector(".js-input");
 const buttonSearch = document.querySelector(".js-button");
 const contentSearch = document.querySelector(".js-content");
+const favouritesSection = document.querySelector(".js-favourites-content")
 let seriesList = [];
+let favouritesSeriesList = [];
 
 function handleButton(ev) {
     ev.preventDefault();
@@ -32,7 +34,7 @@ function handleButton(ev) {
 
             seriesList = info.data;
             for (const serie of seriesList) {
-                contentSearch.innerHTML += `<div><h3>${serie.title}</h3><img class="image-1 js-images" id=${serie.id} src="${serie.images.jpg.small_image_url}" alt="Portada de la serie"></div>`;
+                contentSearch.innerHTML += `<div><h3>${serie.title}</h3><img class="image-1 js-images" id=${serie.mal_id} src="${serie.images.jpg.small_image_url}" alt="Portada de la serie"></div>`;
 
             }
             console.log(seriesList);
@@ -42,6 +44,31 @@ function handleButton(ev) {
                     image.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQppJKxBxJI-9UWLe2VVmzuBd24zsq4_ihxZw&s"
                 }
             }
+            for (const image of allImages) {
+                image.addEventListener("click", handleAddFavourite);
+            }
+            function handleAddFavourite(event) {
+                const idSerieClicked = event.currentTarget.id;
+                const serieSelected = seriesList.find((favourite) => {
+                    return favourite.id === idSerieClicked;
+                })
+                favouritesSeriesList.push(serieSelected);
+                favouritesSection.innerHTML = "";
+                for (const serie of favouritesSeriesList) {
+                    let content = "";
+                    content = `
+                    <div><h3>${serie.title}</h3><img class="image-1 js-images" id=${serie.mal_id} src="${serie.images.jpg.small_image_url}" alt="Portada de la serie"></div>`
+                    content += "</div";
+                    favouritesSection.innerHTML += content;
+                }
+
+
+
+
+
+            }
+
+
 
 
 
