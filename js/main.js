@@ -32,7 +32,7 @@ function handleButton(ev) {
 
             seriesList = info.data;
             for (const serie of seriesList) {
-                contentSearch.innerHTML += `<div><h2>${serie.title}</h2><img class="image-1 js-images" id=${serie.id} src="${serie.images.jpg.small_image_url}" alt="Portada de la serie"></div>`;
+                contentSearch.innerHTML += `<div><h3>${serie.title}</h3><img class="image-1 js-images" id=${serie.id} src="${serie.images.jpg.small_image_url}" alt="Portada de la serie"></div>`;
 
             }
             console.log(seriesList);
