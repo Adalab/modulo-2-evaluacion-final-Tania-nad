@@ -21,7 +21,7 @@ Cuando la usuaria haga click en buscar:
 const inputText = document.querySelector(".js-input");
 const buttonSearch = document.querySelector(".js-button");
 const contentSearch = document.querySelector(".js-content");
-const favouritesSection = document.querySelector(".js-favourites-content")
+const favouritesSection = document.querySelector(".js-favourites-content");
 let seriesList = [];
 let favouritesSeriesList = [];
 
@@ -34,74 +34,53 @@ function handleButton(ev) {
 
             seriesList = info.data;
             for (const serie of seriesList) {
-                contentSearch.innerHTML += `<div><h3>${serie.title}</h3><img class="image-1 js-images" id=${serie.mal_id} src="${serie.images.jpg.small_image_url}" alt="Portada de la serie"></div>`;
+                contentSearch.innerHTML += `<div class="js-series-DOM" id=${serie.mal_id}><h3>${serie.title}</h3><img class="image-1 js-images " src="${serie.images.jpg.small_image_url}" alt="Portada de la serie"></div>`;
+
 
             }
-            console.log(seriesList);
+            const allSeriesDOM = document.querySelectorAll(".js-series-DOM");
+            for (const serieDOM of allSeriesDOM) {
+                serieDOM.addEventListener("click", handleAddFavourite);
+            }
             const allImages = document.querySelectorAll(".js-images");
             for (const image of allImages) {
                 if (image.src.includes("https://cdn.myanimelist.net/img/sp/icon/apple-touch-icon-256.png")) {
                     image.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQppJKxBxJI-9UWLe2VVmzuBd24zsq4_ihxZw&s"
                 }
             }
-            for (const image of allImages) {
-                image.addEventListener("click", handleAddFavourite);
-            }
-            function handleAddFavourite(event) {
-                const idSerieClicked = event.currentTarget.id;
-                const serieSelected = seriesList.find((favourite) => {
-                    return favourite.id === idSerieClicked;
-                })
-                favouritesSeriesList.push(serieSelected);
-                favouritesSection.innerHTML = "";
-                for (const serie of favouritesSeriesList) {
-                    let content = "";
-                    content = `
-                    <div><h3>${serie.title}</h3><img class="image-1 js-images" id=${serie.mal_id} src="${serie.images.jpg.small_image_url}" alt="Portada de la serie"></div>`
-                    content += "</div";
-                    favouritesSection.innerHTML += content;
-                }
-
-
-
-
-
-            }
-
-
-
-
-
-
-
-
-            // function handleFavourites(event) {
-            //     const idSerieClicked = event.currentTarget.value;
-
-            // }
-            // const allImages = document.querySelectorAll(".js-images");
-
-            // for (const image of allImages) {
-            //     allImages.addEventListener("click", handleFavourites);
-
-            // }
-
-
-
-
-
-
         }
-
-
-
-
-
-
         )
-
 }
 
+function handleAddFavourite(event) {
+
+    const idSerieClicked = event.currentTarget.id;
+    console.log(idSerieClicked);
+
+    const serieSelected = seriesList.find((favourite) => {
+
+        return favourite.mal_id === parseInt(idSerieClicked);
+    })
+    favouritesSeriesList.push(serieSelected);
+    favouritesSection.innerHTML = "";
+    for (const favSerie of favouritesSeriesList) {
+        favouritesSection.innerHTML += `<div><h3>${favSerie.title}</h3><img class="image-1 js-images " src="${favSerie.images.jpg.small_image_url}" alt="Portada de la serie">
+        </div>
+     `
+    }
+
+
+
+
+
+    // favouritesSeriesList.push(serieSelected);
+
+    // for (const favSerie of favouritesSeriesList) {
+    //     favouritesSection.innerHTML += `<div>><h3>${favSerie.title}</h3><img class="image-1 js-images " src="${favSerie.images.jpg.small_image_url}" alt="Portada de la serie">
+    // //     </div>
+    // //     `
+    // }
+}
 
 
 buttonSearch.addEventListener("click", handleButton);
