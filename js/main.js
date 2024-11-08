@@ -68,10 +68,16 @@ function handleAddFavourite(event) {
 
 
 }
-//Guardar series favoritas
-localStorage.setItem("favouritesList", JSON.stringify(favouritesSection));
+/*Guardar series favoritas
+- Guardar series favoritas en localStorage
+- Si cuando recargo la página, tengo una lista de favoritas en localStorage
+    la muestro
+
+*/
+localStorage.setItem("favouritesList", JSON.stringify(favouritesSeriesList));
 const favouritesStorage = JSON.parse(localStorage.getItem("favouritesList"));
-if (favouritesSection !== null) {
+if (favouritesSeriesList !== null) {
+    favouritesStorage === favouritesSeriesList;
 
 }
 
