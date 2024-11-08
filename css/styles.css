@@ -1,3 +1,7 @@
+*{
+    color: darkslategray;
+}
+
 .image-1{
     width: 150px;
     height: 150px;
@@ -13,13 +17,16 @@
 }
 .content-2{
     width: 50%;
+    
 }
 .content-container{
     display: flex;
     flex-direction: row-reverse;
     padding: 10px;
     justify-content: center;
-    
-    
-
+    margin-top: 20px;
+}
+.form{
+    padding: 5px;
+    gap: 10px;
 }

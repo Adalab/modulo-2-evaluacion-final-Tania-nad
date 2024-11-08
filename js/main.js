@@ -55,10 +55,7 @@ function handleButton(ev) {
 function handleAddFavourite(event) {
 
     const idSerieClicked = event.currentTarget.id;
-    console.log(idSerieClicked);
-
     const serieSelected = seriesList.find((favourite) => {
-
         return favourite.mal_id === parseInt(idSerieClicked);
     })
     favouritesSeriesList.push(serieSelected);
@@ -70,18 +67,13 @@ function handleAddFavourite(event) {
     }
 
 
-
-
-
-    // favouritesSeriesList.push(serieSelected);
-
-    // for (const favSerie of favouritesSeriesList) {
-    //     favouritesSection.innerHTML += `<div>><h3>${favSerie.title}</h3><img class="image-1 js-images " src="${favSerie.images.jpg.small_image_url}" alt="Portada de la serie">
-    // //     </div>
-    // //     `
-    // }
 }
+//Guardar series favoritas
+localStorage.setItem("favouritesList", JSON.stringify(favouritesSection));
+const favouritesStorage = JSON.parse(localStorage.getItem("favouritesList"));
+if (favouritesSection !== null) {
 
+}
 
 buttonSearch.addEventListener("click", handleButton);
 
