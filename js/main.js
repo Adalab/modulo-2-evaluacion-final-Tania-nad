@@ -48,6 +48,20 @@ function handleButton(ev) {
                     image.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQppJKxBxJI-9UWLe2VVmzuBd24zsq4_ihxZw&s"
                 }
             }
+            localStorage.setItem("favouritesList", JSON.stringify(favouritesSeriesList));
+            const favouritesStorage = JSON.parse(localStorage.getItem("favouritesList"));
+
+
+            if (favouritesStorage !== null) {
+                favouritesSeriesList = favouritesStorage;
+                favouritesSection.innerHTML = "";
+                for (const favSerie of seriesList) {
+                    favouritesSection.innerHTML += `<div><h3>${favSerie.title}</h3><img class="image-1 js-images " src="${favSerie.images.jpg.small_image_url}" alt="Portada de la serie">
+                    </div>
+                    `
+                }
+
+            }
         }
         )
 }
@@ -74,12 +88,6 @@ function handleAddFavourite(event) {
     la muestro
 
 */
-localStorage.setItem("favouritesList", JSON.stringify(favouritesSeriesList));
-const favouritesStorage = JSON.parse(localStorage.getItem("favouritesList"));
-if (favouritesSeriesList !== null) {
-    favouritesStorage === favouritesSeriesList;
-
-}
 
 buttonSearch.addEventListener("click", handleButton);
 
