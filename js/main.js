@@ -22,6 +22,7 @@ const inputText = document.querySelector(".js-input");
 const buttonSearch = document.querySelector(".js-button");
 const contentSearch = document.querySelector(".js-content");
 const favouritesSection = document.querySelector(".js-favourites-content");
+const buttonLog = document.querySelector(".js-log-button");
 let seriesList = [];
 let favouritesSeriesList = [];
 
@@ -34,7 +35,7 @@ function handleButton(ev) {
 
             seriesList = info.data;
             for (const serie of seriesList) {
-                contentSearch.innerHTML += `<div class="js-series-DOM" id=${serie.mal_id}><h3>${serie.title}</h3><img class="image-1 js-images " src="${serie.images.jpg.small_image_url}" alt="Portada de la serie"></div>`;
+                contentSearch.innerHTML += `<div class="js-series-DOM" id=${serie.mal_id}><h3>${serie.title}</h3><img class="image-1 js-images " src="${serie.images.jpg.small_image_url}" alt="Portada de la serie"><p>${serie.type}</p></div>`;
 
 
             }
@@ -65,9 +66,17 @@ function handleAddFavourite(event) {
         </div>
      `
     }
+}
+function handleButtonLog() {
+    for (const favSerie of favouritesSeriesList) {
+        console.log(favSerie.title);
+    }
 
 
 }
+
+buttonLog.addEventListener("click", handleButtonLog);
+
 /*Guardar series favoritas
 - Guardar series favoritas en localStorage
 - Si cuando recargo la página, tengo una lista de favoritas en localStorage
